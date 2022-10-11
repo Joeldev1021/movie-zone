@@ -1,34 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import Card from "./components/Card";
+import { Box } from "@chakra-ui/react";
+import { movieMapper } from "./helper";
+import { IMovie } from "./interface/movie.interface";
+
+const API_KEY = import.meta.env.VITE_API_MOVIE_KEY;
+const popularMovie = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [movieData, setMovieData] = useState<IMovie[]>([]);
+  useEffect(() => {
+    fetch(popularMovie)
+      .then((res) => res.json())
+      .then((data) => setMovieData(movieMapper(data.results)));
+  }, []);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <Box background="black" minHeight="100vh">
+      {movieData.length &&
+        movieData.map((movie) => {
+          return (
+            <Card key={movie.id} rating={movie.rating} image={movie.image} />
+          );
+        })}
+    </Box>
+  );
 }
 
-export default App
+export default App;

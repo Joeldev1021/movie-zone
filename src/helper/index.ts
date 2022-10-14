@@ -21,7 +21,6 @@ export const movieMapper = (moviesOrigin: IMovieOrigin[]): IMovie[] => {
             video: movie.video,
             rating: movie.vote_average,
             voteCount: movie.vote_count,
-
         }
     })
 }

@@ -2,20 +2,16 @@ import { Box, Heading } from "@chakra-ui/react";
 import { domAnimation, LazyMotion, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import CardList from "../../components/CardList";
-import { useGetMovies } from "../../hooks/useGetMovies";
+import CardList from "../components/CardList";
+import { useGetMovies } from "../hooks/useGetMovies";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const [query, setQuery] = useState<string | null>(searchParams.get("query"));
   const { movies, loading } = useGetMovies({
     path: "/search/multi",
-    query: searchParams.get("query")!,
+    params: { query: searchParams.get("query")! },
   });
-
-  useEffect(() => {
-    setQuery(searchParams.get("query"));
-  }, [searchParams.get("query")]);
 
   return (
     <div>

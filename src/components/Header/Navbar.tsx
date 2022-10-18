@@ -11,12 +11,12 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { INavItem } from "../../interface/navItem";
 import { NAV_ITEMS } from "../../constant";
 import { useGetMovies } from "../../hooks/useGetMovies";
 import { API } from "../../api";
 import { useEffect, useState } from "react";
 import { IGenre } from "../../interface/movie.interface";
+import { Link as LinkRouter } from "react-router-dom";
 
 const NavbarDesk = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
@@ -30,6 +30,7 @@ const NavbarDesk = () => {
     );
   }, []);
 
+  console.log(genres);
   return (
     <Stack direction={"row"} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
@@ -60,14 +61,16 @@ const NavbarDesk = () => {
                 rounded={"xl"}
                 minW={"sm"}
               >
-                <Stack>
-                  {genres.map((item: IGenre) => (
-                    <DesktopSubNav
-                      key={item.id}
-                      id={item.id}
-                      name={item.name}
-                    />
-                  ))}
+                <Stack height="auto" overflow="hidden">
+                  <Flex flexWrap={"wrap"}>
+                    {genres.map((item: IGenre) => (
+                      <DesktopSubNav
+                        key={item.id}
+                        id={item.id}
+                        name={item.name}
+                      />
+                    ))}
+                  </Flex>
                 </Stack>
               </PopoverContent>
             )}
@@ -83,9 +86,11 @@ export default NavbarDesk;
 const DesktopSubNav = ({ name, id }: IGenre) => {
   return (
     <Link
-      href={"#"}
+      as={LinkRouter}
+      to={`/category/${id}`}
       role={"group"}
       display={"block"}
+      width="150px"
       p={2}
       rounded={"md"}
       _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
@@ -96,10 +101,10 @@ const DesktopSubNav = ({ name, id }: IGenre) => {
             transition={"all .3s ease"}
             _groupHover={{ color: "pink.400" }}
             fontWeight={500}
+            fontSize="sm"
           >
             {name}
           </Text>
-          <Text fontSize={"sm"}>{name}</Text>
         </Box>
         <Flex
           transition={"all .3s ease"}

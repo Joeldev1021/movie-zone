@@ -18,10 +18,10 @@ function Search() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Flex w="-webkit-max-content" m="auto">
+      <Flex w="-webkit-max-content" m="auto" my="5">
         <Input
           onChange={handleChangeInput}
-          value={query}
+          defaultValue={query}
           textColor="white"
           placeholder="Basic usage"
         />

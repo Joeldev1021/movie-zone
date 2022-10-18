@@ -1,4 +1,4 @@
-import { Badge, Box, Image } from "@chakra-ui/react";
+import { Box, CircularProgress, Image, Text } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { FC } from "react";
 
@@ -6,28 +6,37 @@ interface CardProps {
   image: string;
   rating: number;
   title: string;
+  desc: string;
 }
-
-const Card: FC<CardProps> = ({ image, rating, title }) => {
+const Card: FC<CardProps> = ({ image, rating, title, desc }) => {
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+    <Box position="relative" borderRadius="lg" overflow="hidden">
       <Image src={image} alt={title} />
-      <Box p="6">
-        <Box display="flex" alignItems="baseline">
-          <Badge borderRadius="full" px="2" colorScheme="teal">
-            New
-          </Badge>
-        </Box>
-
-        <Box
-          mt="1"
-          color="white"
-          fontWeight="semibold"
-          as="h4"
-          lineHeight="tight"
-          noOfLines={1}
-        >
+      <Box
+        bg="rgba(0,0,0,0.7)"
+        _hover={{ opacity: 1 }}
+        top={0}
+        left={0}
+        height="full"
+        width="full"
+        opacity={0}
+        color="white"
+        position="absolute"
+        transition="0.3s linear"
+      >
+        <Text fontSize="1.1rem" align="center">
           {title}
+        </Text>
+        <Text fontSize="sm" noOfLines={6}>
+          {desc}
+        </Text>
+        <Box>
+          {rating}
+          <StarIcon
+            style={{ position: "absolute", right: 10, bottom: 30 }}
+            color="yellow.500"
+          />
+          <CircularProgress value={30} color="orange.400" thickness="12px" />
         </Box>
       </Box>
     </Box>

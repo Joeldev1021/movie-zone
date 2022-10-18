@@ -9,13 +9,14 @@ interface Props {
 
 const CardList: FC<Props> = ({ movies }) => {
   return (
-    <SimpleGrid minChildWidth="200px" spacing="20px">
+    <SimpleGrid minChildWidth="200px" spacing="50px">
       {movies.map((movie) => (
         <Card
           key={movie.id}
           title={movie.title}
           image={movie.imageLarge}
           rating={movie.rating}
+          desc={movie.description}
         />
       ))}
     </SimpleGrid>

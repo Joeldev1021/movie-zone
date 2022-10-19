@@ -3,19 +3,36 @@ import React, { FC } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Search from "../components/Search";
+import { motion } from "framer-motion";
+import { ChakraProvider } from "@chakra-ui/react";
 interface PropsLayout {
   Outlet: React.ReactNode;
 }
 
 const Layout = () => {
   return (
-    <Box background="black" minHeight="100vh">
+    <Box>
       <Header />
-
-      <Container py="4" maxW="container.xl">
-        <Search />
-        <Outlet />
-      </Container>
+      <motion.div
+        initial="initial"
+        animate="animate"
+        variants={{
+          initial: {
+            opacity: 0,
+          },
+          animate: {
+            opacity: 1,
+          },
+        }}
+      >
+        <Container
+          maxW={{ base: "100%", md: "70%" }}
+          mt={{ base: "1", md: "3" }}
+        >
+          <Search />
+          <Outlet />
+        </Container>
+      </motion.div>
     </Box>
   );
 };

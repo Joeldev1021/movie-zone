@@ -10,13 +10,24 @@ import {
   useBreakpointValue,
   useDisclosure,
   Container,
+  PopoverContent,
+  Popover,
+  PopoverTrigger,
+  Icon,
+  Link,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import NavbarDesk from "./Navbar";
-import MobileNav from "./MobileNav";
-import { NAV_ITEMS } from "../../constant";
-import { Link } from "react-router-dom";
+import {
+  HamburgerIcon,
+  CloseIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
+} from "@chakra-ui/icons";
 import Theme from "./Theme";
+import { INavItem } from "../../interface/navItem";
+import { NAV_ITEMS } from "../../constant";
+import { Link as LinkRouter } from "react-router-dom";
+import { MobileNav } from "./NavBar/NavbarMobil/MobileNav";
+import { DesktopNav } from "./NavBar/NavbarDesk/DesktopNav";
 
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
@@ -60,7 +71,7 @@ export default function Header() {
             flex={{ base: 1 }}
             justify={{ base: "center", md: "start" }}
           >
-            <Link to="/">
+            <Link as={LinkRouter} to="/">
               <Text
                 textAlign={useBreakpointValue({ base: "center", md: "left" })}
                 fontFamily={"heading"}
@@ -69,7 +80,7 @@ export default function Header() {
               </Text>
             </Link>
             <Flex display={{ base: "none", md: "flex" }} ml={10}>
-              <NavbarDesk title="Grenes" />
+              <DesktopNav />
             </Flex>
           </Flex>
 
@@ -106,7 +117,7 @@ export default function Header() {
         </Flex>
 
         <Collapse in={isOpen} animateOpacity>
-          <MobileNav navItems={NAV_ITEMS} />
+          <MobileNav />
         </Collapse>
       </Container>
     </Box>

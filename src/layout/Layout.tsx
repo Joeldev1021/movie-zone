@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Search from "../components/Search";
 import { motion } from "framer-motion";
-import { ChakraProvider } from "@chakra-ui/react";
+
 interface PropsLayout {
   Outlet: React.ReactNode;
 }

@@ -1,5 +1,6 @@
+
 export interface INavItem {
     label: string;
-    children?: INavItem[];
+    children?: Array<INavItem>;
     href?: string;
 }

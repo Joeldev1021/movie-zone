@@ -9,27 +9,9 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FC } from "react";
-import { INavItem } from "../../interface/navItem";
-interface NavProps {
-  navItems: INavItem[];
-}
+import { INavItem } from "../../../../interface/navItem";
 
-const MobileNav: FC<NavProps> = ({ navItems }) => {
-  return (
-    <Stack
-      bg={useColorModeValue("white", "gray.800")}
-      p={4}
-      display={{ md: "none" }}
-    >
-      {navItems.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
-    </Stack>
-  );
-};
-
-const MobileNavItem = ({ label, children, href }: INavItem) => {
+export const MobileNavItem = ({ label, children, href }: INavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -37,7 +19,7 @@ const MobileNavItem = ({ label, children, href }: INavItem) => {
       <Flex
         py={2}
         as={Link}
-        href={href ?? "#"}
+        href={href!}
         justify={"space-between"}
         align={"center"}
         _hover={{
@@ -71,8 +53,8 @@ const MobileNavItem = ({ label, children, href }: INavItem) => {
           align={"start"}
         >
           {children &&
-            children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+            children.map((child: INavItem) => (
+              <Link key={child.label} py="2" href={child.href!}>
                 {child.label}
               </Link>
             ))}
@@ -81,5 +63,3 @@ const MobileNavItem = ({ label, children, href }: INavItem) => {
     </Stack>
   );
 };
-
-export default MobileNav;

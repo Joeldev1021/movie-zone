@@ -23,10 +23,11 @@ export const DesktopSubNav = ({ label, href, genre }: Props) => {
   return (
     <Link
       as={LinkRouter}
-      to={href!}
+      to={href ? href : `genre/${genre?.id}`}
       role={"group"}
       display={"block"}
       p={2}
+      width={genre ? "140px" : "auto"}
       rounded={"md"}
       _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
     >

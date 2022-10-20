@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Layout from "../layout/Layout";
 const SearchPage = lazy(() => import("../pages/SearchPage"));
-const CategoryPage = lazy(() => import("../pages/Category"));
+const GenrePage = lazy(() => import("../pages/GenrePage"));
 const MoviePage = lazy(() => import("../pages/Movie"));
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/category/:id" element={<CategoryPage />} />
+            <Route path="/genre/:id" element={<GenrePage />} />
             <Route path="/movie/:id" element={<MoviePage />} />
           </Route>
         </Routes>

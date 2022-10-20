@@ -71,10 +71,9 @@ export const DesktopNav = () => {
                 bg={popoverContentBgColor}
                 p={4}
                 rounded={"xl"}
-                height="auto"
               >
-                <Stack>
-                  <Flex flexWrap="wrap" width="350px">
+                <Stack overflow="hidden">
+                  <Flex flexWrap="wrap">
                     {genres.map((genre: IGenre) => (
                       <DesktopSubNav key={genre.id} genre={genre} />
                     ))}
@@ -88,3 +87,18 @@ export const DesktopNav = () => {
     </Stack>
   );
 };
+/* <PopoverContent
+            border={0}
+            boxShadow={"xl"}
+            p={4}
+            rounded={"xl"}
+            minW={"sm"}
+          >
+            <Stack height="auto" overflow="hidden">
+              <Flex flexWrap={"wrap"}>
+                {genres.map((item: IGenre) => (
+                  <DesktopSubNav key={item.id} id={item.id} name={item.name} />
+                ))}
+              </Flex>
+            </Stack>
+          </PopoverContent> */

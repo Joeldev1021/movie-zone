@@ -22,9 +22,7 @@ const SearchPage = () => {
           animate={{ opacity: 1 }}
           transition={"durantion: 0.5"}
         >
-          <Heading as="h2" color="white">
-            Result search {query}
-          </Heading>
+          <Heading as="h3">Result search {query}</Heading>
         </Box>
         {!loading ? <CardList movies={movies} /> : <h1>loading....</h1>}
       </LazyMotion>

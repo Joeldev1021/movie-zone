@@ -5,22 +5,24 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
 import { FC, useState } from "react";
-
+import { Link } from "react-router-dom";
 interface CardProps {
+  id?: number;
   image?: string;
   rating: number;
   title: string;
   desc: string;
 }
 
-const Card: FC<CardProps> = ({ image, rating, title, desc }) => {
+const Card: FC<CardProps> = ({ id, image, rating, title, desc }) => {
   return (
-    <Box position="relative" borderRadius="lg" overflow="hidden">
-      <Image src={image} alt={title} />
-      <CardInfo title={title} desc={desc} rating={rating} />
-    </Box>
+    <Link to={`/movie/${id}`}>
+      <Box position="relative" borderRadius="lg" overflow="hidden">
+        <Image src={image} alt={title} />
+        <CardInfo title={title} desc={desc} rating={rating} />
+      </Box>
+    </Link>
   );
 };
 
@@ -34,6 +36,7 @@ const CardInfo: FC<CardProps> = ({ title, desc, rating }) => {
       _hover={{ opacity: 1 }}
       top={0}
       left={0}
+      padding="2"
       height="full"
       width="full"
       opacity={0}
@@ -41,7 +44,13 @@ const CardInfo: FC<CardProps> = ({ title, desc, rating }) => {
       position="absolute"
       transition="0.3s linear"
     >
-      <Text fontSize="1.1rem" align="center">
+      <Text
+        fontSize="1.1rem"
+        py="2"
+        color="pink.500"
+        fontWeight="bold"
+        align="center"
+      >
         {title}
       </Text>
       <Text mt="8" align="center" fontSize="sm" noOfLines={6}>

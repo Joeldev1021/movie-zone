@@ -4,6 +4,7 @@ import { lazy, Suspense } from "react";
 import Layout from "../layout/Layout";
 const SearchPage = lazy(() => import("../pages/SearchPage"));
 const CategoryPage = lazy(() => import("../pages/Category"));
+const MoviePage = lazy(() => import("../pages/Movie"));
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/category/:id" element={<CategoryPage />} />
+            <Route path="/movie/:id" element={<MoviePage />} />
           </Route>
         </Routes>
       </Suspense>

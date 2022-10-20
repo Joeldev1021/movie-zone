@@ -2,34 +2,33 @@ import { INavItem } from "../interface/navItem";
 
 export const NAV_ITEMS: INavItem[] = [
     {
-        label: "Inspiration",
+        label: "TV Show",
         children: [
             {
-                label: "Explore Design Work",
-                subLabel: "Trending Design to inspire you",
-                href: "#",
+                label: "Trending day",
+                href: "tv-show/trending/day",
             },
             {
-                label: "New & Noteworthy",
-                subLabel: "Up-and-coming Designers",
-                href: "#",
+                label: "Trending week",
+                href: "tv-show/trending/week",
             },
         ],
     },
     {
-        label: "Find Work",
+        label: "Movie",
         children: [
             {
-                label: "Job Board",
-                subLabel: "Find your dream design job",
-                href: "#",
+                label: "Trending day",
+                href: "movie/trending/day",
             },
             {
-                label: "Freelance Projects",
-                subLabel: "An exclusive list for contract work",
-                href: "#",
-            },
+                label: "Trending week",
+                href: "movie/trending/week",
+            }
         ],
     },
+    {
+        label: "Genres"
+    }
 
 ];

@@ -12,6 +12,7 @@ const CardList: FC<Props> = ({ movies }) => {
     <SimpleGrid minChildWidth="200px" spacing="50px">
       {movies.map((movie) => (
         <Card
+          id={movie.id}
           key={movie.id}
           title={movie.title}
           image={movie.imageLarge}

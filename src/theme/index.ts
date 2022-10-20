@@ -1,10 +1,10 @@
 import { ChakraProps, extendTheme, type ThemeConfig } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
-
+import components from "./components/index";
 const theme: ThemeConfig = extendTheme(
-    /* {
-      components,
-    }, */
+    {
+        components,
+    },
     {
         config: {
             initialColorMode: "dark",
@@ -12,8 +12,8 @@ const theme: ThemeConfig = extendTheme(
         },
         colors: {
             bg: {
+                dark: "#000000",
                 light: "#F2F2F2",
-                dark: "#1F2023",
             },
             full: {
                 dark: "#000000",
@@ -24,16 +24,15 @@ const theme: ThemeConfig = extendTheme(
             },
         },
         fonts: {
-            body: "Inter-Regular, sans-serif",
-            heading: "Inter-Semibold, sans-serif",
+            body: "Poppins, sans-serif",
+            heading: "Poppins, sans-serif",
         },
         styles: {
             global: (props: ChakraProps) => ({
                 "html, body": {
                     height: "100%",
                     maxHeight: "100vh",
-                    bg: mode("bg.dark", "bg.light")(props),
-                    fontSize: "14px",
+                    bg: mode("bg.light", "bg.dark")(props),
                 },
             }),
         },

@@ -17,12 +17,10 @@ interface CardProps {
 
 const Card: FC<CardProps> = ({ id, image, rating, title, desc }) => {
   return (
-    <Link to={`/movie/${id}`}>
-      <Box position="relative" borderRadius="lg" overflow="hidden">
-        <Image src={image} alt={title} />
-        <CardInfo title={title} desc={desc} rating={rating} />
-      </Box>
-    </Link>
+    <Box position="relative" borderRadius="lg" overflow="hidden">
+      <Image src={image} alt={title} />
+      <CardInfo title={title} desc={desc} rating={rating} />
+    </Box>
   );
 };
 

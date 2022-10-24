@@ -22,7 +22,7 @@ function Search() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    navigate(`/search?query=${query}`);
+    navigate(`/search/${query}`);
     setQuery("");
   };
 
@@ -38,26 +38,13 @@ function Search() {
             onChange={handleChangeInput}
             backgroundColor="transparent"
             focusBorderColor="pink.500"
+            value={query || ""}
             autoFocus={true}
           />
         </InputGroup>
       </form>
     </Box>
   );
-
-  /*  return (
-    <form onSubmit={handleSubmit}>
-      <Flex w="-webkit-max-content" m="auto" my="5">
-        <Input
-          onChange={handleChangeInput}
-          defaultValue={query}
-          textColor="white"
-          placeholder="Basic usage"
-        />
-        <Button type="submit">Search</Button>
-      </Flex>
-    </form>
-  ); */
 }
 
 export default Search;

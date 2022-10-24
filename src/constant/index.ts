@@ -1,6 +1,10 @@
 import { INavItem } from "../interface/navItem";
 
 
+export const API_IMAGE_PORTRAIT_HOST = "https://image.tmdb.org/t/p/w300";
+export const API_IMAGE_LANDSCAPE_HOST = "https://image.tmdb.org/t/p/original";
+
+export const IMG_RANDOM = 'https://cdn.oldskull.net/wp-content/uploads/2015/07/Flore-Maquin-movie-posters-illustration-dracula-.jpg'
 
 
 export const NAV_ITEMS: INavItem[] = [

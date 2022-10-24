@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { API } from "../../../../api";
 import { NAV_ITEMS } from "../../../../constant";
-import { IGenre } from "../../../../interface/movie.interface";
+import { IGenre } from "../../../../interface/movie";
 import { INavItem } from "../../../../interface/navItem";
 import { DesktopSubNav } from "./DesktopSubNav";
 

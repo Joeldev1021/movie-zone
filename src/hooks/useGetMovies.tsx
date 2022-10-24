@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { API } from "../api";
-import { movieMapper } from "../helper";
-import { IMovie } from "../interface/movie.interface";
+import { IMovieOrigin, IMovieResponse } from "../interface/movie";
 
 interface Props {
   path: string;
@@ -12,17 +11,19 @@ interface Props {
 }
 
 export const useGetMovies = ({ path, params }: Props) => {
-  const [movies, setMovies] = useState<IMovie[]>([]);
+  const [movies, setMovies] = useState<IMovieOrigin[]>([]);
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(true);
-    API.get(path, { params: { ...params } })
-      .then((response) => setMovies(movieMapper(response.data.results)))
+    API.get<IMovieResponse>(path, { params: { ...params } })
+      .then((res) => {
+        setMovies(res.data.results);
+      })
       .catch((error) => setError(true))
       .finally(() => setLoading(false));
-  }, [params?.query, params?.with_genres]);
+  }, [params?.query || params?.with_genres]);
 
   return { movies, loading, error };
 };

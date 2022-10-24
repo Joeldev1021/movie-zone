@@ -1,40 +1,29 @@
-import { IMovie, IMovieOrigin } from "../interface/movie.interface"
-
-export const API_IMAGE_PORTRAIT_HOST = "https://image.tmdb.org/t/p/w300";
-export const API_IMAGE_LANDSCAPE_HOST = "https://image.tmdb.org/t/p/original";
+import { API_IMAGE_LANDSCAPE_HOST, API_IMAGE_PORTRAIT_HOST, IMG_RANDOM } from "../constant"
+import { ICast, ICastOrigin, IMovieOrigin, IMovieVideo } from "../interface/movie"
 
 
-export const movieMapper = (moviesOrigin: IMovieOrigin[]): IMovie[] => {
-    return moviesOrigin.map(movie => {
 
+export const movieVideoMapper = (movieVideo: IMovieVideo): IMovieVideo => {
+    const { id, name, key, official, site } = movieVideo
+    return {
+        id,
+        name,
+        key,
+        official,
+        site,
+    }
+}
+
+
+export const movieCastMapper = (casts: ICastOrigin[]): ICast[] => {
+    return casts.map(cast => {
+        const { id, cast_id, character, name, profile_path } = cast
         return {
-            id: movie.id,
-            image: `${API_IMAGE_PORTRAIT_HOST}/${movie.backdrop_path}`,
-            genreIds: movie.genre_ids,
-            originalLanguage: movie.original_language,
-            titleOriginal: movie.original_title,
-            description: movie.overview,
-            popularity: movie.popularity,
-            imageLarge: `${API_IMAGE_PORTRAIT_HOST}/${movie.poster_path}`,
-            releaseDate: movie.release_date,
-            title: movie.title,
-            video: movie.video,
-            rating: movie.vote_average,
-            voteCount: movie.vote_count,
+            id,
+            name,
+            character,
+            castId: cast_id,
+            profilePath: profile_path
         }
     })
 }
-
-/* id: movie.id;
-        backdropPath: movie.backdrop_path;
-        genreIds: movie.genre_ids;
-        originalLanguage: movie.original_language;
-        titleOriginal: movie.original_title;
-        description: movie.overview;
-        popularity: movie.popularity;
-        posterPath: movie.poster_path;
-        releaseDate: movie.release_date;
-        title: movie.title;
-        video: movie.video;
-        voteAverage: movie.vote_average;
-        voteCount: movie.vote_count; */

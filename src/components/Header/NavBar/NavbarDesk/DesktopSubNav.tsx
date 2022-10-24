@@ -9,7 +9,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Link as LinkRouter } from "react-router-dom";
-import { IGenre } from "../../../../interface/movie.interface";
+import { IGenre } from "../../../../interface/movie";
 import { INavItem } from "../../../../interface/navItem";
 
 interface Props {
@@ -19,7 +19,6 @@ interface Props {
 }
 
 export const DesktopSubNav = ({ label, href, genre }: Props) => {
-  console.log(genre);
   return (
     <Link
       as={LinkRouter}

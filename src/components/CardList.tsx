@@ -1,24 +1,27 @@
-import { Container, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
-import { IMovie } from "../interface/movie.interface";
+import { SimpleGrid } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { IMovieOrigin } from "../interface/movie";
 import { FC } from "react";
 import Card from "./Card";
+import { API_IMAGE_PORTRAIT_HOST } from "../constant";
 
 interface Props {
-  movies: IMovie[];
+  movies: IMovieOrigin[];
 }
 
 const CardList: FC<Props> = ({ movies }) => {
   return (
     <SimpleGrid minChildWidth="200px" spacing="50px">
       {movies.map((movie) => (
-        <Card
-          id={movie.id}
-          key={movie.id}
-          title={movie.title}
-          image={movie.imageLarge}
-          rating={movie.rating}
-          desc={movie.description}
-        />
+        <Link key={movie.id} to={`movie/${movie.id}`}>
+          <Card
+            id={movie.id}
+            title={movie.title}
+            image={`${API_IMAGE_PORTRAIT_HOST}/${movie.poster_path}`}
+            rating={movie.vote_average}
+            desc={movie.overview}
+          />
+        </Link>
       ))}
     </SimpleGrid>
   );

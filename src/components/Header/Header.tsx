@@ -12,6 +12,7 @@ import {
   Container,
   PopoverContent,
   Popover,
+  Image,
   PopoverTrigger,
   Icon,
   Link,
@@ -71,13 +72,12 @@ export default function Header() {
             flex={{ base: 1 }}
             justify={{ base: "center", md: "start" }}
           >
-            <Link as={LinkRouter} to="/">
-              <Text
-                textAlign={useBreakpointValue({ base: "center", md: "left" })}
-                fontFamily={"heading"}
-              >
-                MovieZone
-              </Text>
+            <Link bottom="15px" position="relative" as={LinkRouter} to="/">
+              <Image
+                src="https://imgur.com/GJ0W5Vf.png"
+                alt="logo"
+                width="140px"
+              />
             </Link>
             <Flex display={{ base: "none", md: "flex" }} ml={10}>
               <DesktopNav />

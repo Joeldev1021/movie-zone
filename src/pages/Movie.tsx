@@ -1,36 +1,34 @@
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import { InfoIcon } from "@chakra-ui/icons";
+import {
+  Box,
+  Flex,
+  Heading,
+  HStack,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  Text,
+} from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import Card from "../components/Card";
 import CardList from "../components/CardList";
+import MovieInfo from "../components/MovieInfo";
+import TagGenre from "../components/TagGenre";
+import WrapperAvatar from "../components/WrapperAvatar";
 import { API_IMAGE_PORTRAIT_HOST } from "../constant";
 import { useDetailsMovie } from "../hooks/useDetailMovie";
 
 function Movie() {
   const { id } = useParams();
-  const { movieDetails, error, loading } = useDetailsMovie(id!);
+  const { movieDetails, loading } = useDetailsMovie(id!);
 
   return (
     <Box>
       {loading === false ? (
-        <Flex>
-          <Box width="800px">
-            <Card
-              title={movieDetails.movie.title}
-              image={`${API_IMAGE_PORTRAIT_HOST}/${movieDetails.movie.poster_path}`}
-              rating={movieDetails.movie.vote_average}
-              desc={movieDetails.movie.overview}
-            />
-          </Box>
-          <Box px="4">
-            <Heading as="h2">{movieDetails.movie.title}</Heading>
-
-            <Flex>
-              <Text>thriller</Text>
-            </Flex>
-            <Text>{movieDetails.movie.overview}</Text>
-          </Box>
-        </Flex>
+        <Box>
+          <MovieInfo movie={movieDetails.movie} casts={movieDetails.cast} />
+          <CardList movies={movieDetails.similari} />
+        </Box>
       ) : (
         <h1>Loading</h1>
       )}
@@ -39,10 +37,3 @@ function Movie() {
 }
 
 export default Movie;
-/*   <iframe
-          title={videos.results[1].title}
-          src={`https://www.youtube.com/embed/${videos.results[1].key}`}
-          frameBorder={0}
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />*/

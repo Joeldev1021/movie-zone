@@ -13,7 +13,7 @@ const CardList: FC<Props> = ({ movies }) => {
   return (
     <SimpleGrid minChildWidth="200px" spacing="50px">
       {movies.map((movie) => (
-        <Link key={movie.id} to={`movie/${movie.id}`}>
+        <Link key={movie.id} to={`/movie/${movie.id}`}>
           <Card
             id={movie.id}
             title={movie.title}

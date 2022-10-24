@@ -5,12 +5,16 @@ export interface IMovieVideo {
     official: boolean
     site: string
 }
-
+export interface IGenre {
+    id: number;
+    name: string
+}
 
 export interface IMovieOrigin {
     adult: boolean
     backdrop_path: string
     genre_ids: number[]
+    genres?: IGenre[]
     id: number
     original_title: string
     original_language: string
@@ -27,10 +31,7 @@ export interface IMovieOrigin {
     homepage?: string
 }
 
-export interface IGenre {
-    id: number;
-    name: string
-}
+
 export interface ICastOrigin {
     id: number;
     name: string;

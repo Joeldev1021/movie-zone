@@ -7,9 +7,12 @@ const GenrePage = () => {
   const { id } = useParams();
   const { movies, loading } = useGetMovies({
     path: "/discover/movie",
-    params: { with_genres: id },
+    params: { with_genres: id, page: 1 },
   });
-  return <div>{<CardList movies={movies} />}</div>;
+  if (loading) {
+    return <h1>cargando...</h1>;
+  }
+  return <CardList movies={movies} />;
 };
 
 export default GenrePage;

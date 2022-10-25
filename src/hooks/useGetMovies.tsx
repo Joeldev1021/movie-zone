@@ -7,11 +7,15 @@ interface Props {
   params?: {
     query?: string;
     with_genres?: string;
+    page: number;
   };
 }
 
 export const useGetMovies = ({ path, params }: Props) => {
   const [movies, setMovies] = useState<IMovieOrigin[]>([]);
+  const [movieResponse, setMovieResponse] = useState<IMovieResponse>(
+    {} as IMovieResponse
+  );
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -19,11 +23,15 @@ export const useGetMovies = ({ path, params }: Props) => {
     setLoading(true);
     API.get<IMovieResponse>(path, { params: { ...params } })
       .then((res) => {
-        setMovies(res.data.results);
+        setMovieResponse(res.data);
+        setMovies((prevState: IMovieOrigin[]) => [
+          ...prevState,
+          ...res.data.results,
+        ]);
       })
       .catch((error) => setError(true))
       .finally(() => setLoading(false));
-  }, [params?.query || params?.with_genres]);
+  }, [params?.query || params?.with_genres || params?.page]);
 
-  return { movies, loading, error };
+  return { movies, loading, error, movieResponse };
 };

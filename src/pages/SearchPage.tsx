@@ -10,7 +10,7 @@ const SearchPage = () => {
   const [query, setQuery] = useState<string | null>(params.query!);
   const { movies, loading } = useGetMovies({
     path: "/search/multi",
-    params: { query: useParams().query },
+    params: { query: useParams().query, page: 1 },
   });
 
   return (

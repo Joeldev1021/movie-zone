@@ -1,4 +1,4 @@
-import { ChakraProps, extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { ChakraProps, extendTheme, withDefaultColorScheme, type ThemeConfig } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 import components from "./components/index";
 const theme: ThemeConfig = extendTheme(

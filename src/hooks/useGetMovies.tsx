@@ -24,10 +24,7 @@ export const useGetMovies = ({ path, params }: Props) => {
     API.get<IMovieResponse>(path, { params: { ...params } })
       .then((res) => {
         setMovieResponse(res.data);
-        setMovies((prevState: IMovieOrigin[]) => [
-          ...prevState,
-          ...res.data.results,
-        ]);
+        setMovies([...movies, ...res.data.results]);
       })
       .catch((error) => setError(true))
       .finally(() => setLoading(false));

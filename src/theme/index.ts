@@ -1,15 +1,18 @@
-import { ChakraProps, extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { ChakraProps, extendTheme, withDefaultColorScheme, type ThemeConfig } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 import components from "./components/index";
 const theme: ThemeConfig = extendTheme(
+
     {
         components,
     },
+
     {
         config: {
             initialColorMode: "dark",
             useSystemColorMode: false,
         },
+
         colors: {
             bg: {
                 dark: "#000000",
@@ -27,6 +30,7 @@ const theme: ThemeConfig = extendTheme(
             body: "Poppins, sans-serif",
             heading: "Poppins, sans-serif",
         },
+
         styles: {
             global: (props: ChakraProps) => ({
                 "html, body": {

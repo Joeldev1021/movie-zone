@@ -16,6 +16,7 @@ export interface IMovieOrigin {
     genre_ids: number[]
     genres?: IGenre[]
     id: number
+    imdb_id: number
     original_title: string
     original_language: string
     overview: string
@@ -51,7 +52,6 @@ export interface ICast {
 export interface IMovieDetails {
     movie: IMovieOrigin
     cast: ICast[]
-    similari: IMovieOrigin[]
 }
 
 export interface IMovieResponse {

@@ -13,14 +13,14 @@ export const NAV_ITEMS: INavItem[] = [
         children: [
             {
                 label: "Trending today",
-                href: "movie/trending/today",
+                href: "trending/movie/day",
             },
             {
                 label: "Trending week",
-                href: "movie/trending/week",
+                href: "trending/movie/week",
             }, {
                 label: "Top Rated",
-                href: "movie/top-rated"
+                href: "movie/top_rated"
             }, {
                 label: "Popular",
                 href: "movie/popular"
@@ -32,18 +32,18 @@ export const NAV_ITEMS: INavItem[] = [
         children: [
             {
                 label: "Trending today",
-                href: "tv-show/trending/today",
+                href: "trending/tv/day",
             },
             {
                 label: "Trending week",
-                href: "tv-show/trending/week",
+                href: "trending/tv/week",
             },
             {
                 label: "Top Rated",
-                href: "tv-show/top-rated"
+                href: "tv/top_rated"
             }, {
                 label: "Popular",
-                href: "tv-show/popular"
+                href: "tv/popular"
             }
         ],
     },
@@ -51,4 +51,13 @@ export const NAV_ITEMS: INavItem[] = [
         label: "Genres",
         href: "#",
     },
+];
+
+export const MULTI_PATH = [
+    'trending/tv/:query',
+    'tv/top_rated',
+    'tv/popular',
+    'trending/movie/:query',
+    'movie/top_rated',
+    'movie/popular',
 ];

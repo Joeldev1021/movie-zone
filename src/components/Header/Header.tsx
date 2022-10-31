@@ -1,31 +1,18 @@
 import {
   Box,
   Flex,
-  Text,
   IconButton,
   Button,
   Stack,
   Collapse,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
   Container,
-  PopoverContent,
-  Popover,
   Image,
-  PopoverTrigger,
-  Icon,
   Link,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import Theme from "./Theme";
-import { INavItem } from "../../interface/navItem";
-import { NAV_ITEMS } from "../../constant";
 import { Link as LinkRouter } from "react-router-dom";
 import { MobileNav } from "./NavBar/NavbarMobil/MobileNav";
 import { DesktopNav } from "./NavBar/NavbarDesk/DesktopNav";

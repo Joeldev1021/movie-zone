@@ -1,36 +1,36 @@
-import { Box, Button, Heading, HStack } from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
-import CardList from "../components/CardList";
-import { useGetMovies } from "../hooks/useGetMovies";
-import useNearScreen from "../hooks/useNearScreen";
-const { VITE_API_MOVIE_KEY } = import.meta.env;
+import { Box, Heading } from '@chakra-ui/react';
+import { useEffect, useRef, useState } from 'react';
+import CardList from '../components/CardList';
+import { useGetMovies } from '../hooks/useGetMovies';
+import useNearScreen from '../hooks/useNearScreen';
 
+//TODO: trending/all/day
 function Home() {
-  const [page, setPage] = useState(1);
-  const { movies, loading, movieResponse } = useGetMovies({
-    path: "trending/movie/day",
-    params: { page: page },
-  });
-  const divRef = useRef<HTMLDivElement | null>(null);
-  const { entries } = useNearScreen({ target: divRef, setPage });
+	const [page, setPage] = useState(1);
+	const { movies, loading } = useGetMovies({
+		path: `trending/all/day`,
+	});
 
-  useEffect(() => {
-    if (entries?.isIntersecting) setPage((prev) => prev + 1);
-  }, [entries]);
+	const divRef = useRef<HTMLDivElement | null>(null);
+	const { entries } = useNearScreen({ target: divRef });
 
-  return (
-    <>
-      <Box minH="100vh">
-        <CardList movies={movies} />
-      </Box>
-      {loading && (
-        <Heading as="h2" bg="red" color="white">
-          Cargando
-        </Heading>
-      )}
-      <div ref={divRef}></div>
-    </>
-  );
+	useEffect(() => {
+		if (entries?.isIntersecting) setPage(prev => prev + 1);
+	}, [entries]);
+
+	return (
+		<>
+			<Box minH='100vh'>
+				<CardList movies={movies} />
+			</Box>
+			{loading && (
+				<Heading as='h2' bg='red' color='white'>
+					Cargando
+				</Heading>
+			)}
+			<div ref={divRef}></div>
+		</>
+	);
 }
 
 export default Home;

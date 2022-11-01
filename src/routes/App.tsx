@@ -8,6 +8,7 @@ const SearchPage = lazy(() => import('../pages/SearchPage'));
 const GenrePage = lazy(() => import('../pages/GenrePage'));
 const MoviePage = lazy(() => import('../pages/Movie'));
 const MovieTvPage = lazy(() => import('../pages/MovieTv'));
+const PersonPage = lazy(() => import('../pages/Person'));
 function App() {
 	return (
 		<BrowserRouter>
@@ -18,10 +19,11 @@ function App() {
 						<Route path='/search/:query' element={<SearchPage />} />
 						<Route path='/genre/:id' element={<GenrePage />} />
 						<Route path='/movie/:id' element={<MoviePage />} />
-						<Route path='/tv/:id' element={<MovieTvPage />} />
+						<Route path='/tv/:id' element={<MoviePage />} />
 						{MULTI_PATH.map(path => (
-							<Route path={path} element={<Movies />} />
+							<Route key={path} path={path} element={<Movies />} />
 						))}
+						<Route path='/person/:id' element={<PersonPage />} />
 					</Route>
 				</Routes>
 			</Suspense>

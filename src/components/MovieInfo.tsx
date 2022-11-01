@@ -1,4 +1,4 @@
-import { ArrowForwardIcon, EmailIcon, LinkIcon } from '@chakra-ui/icons';
+import { LinkIcon } from '@chakra-ui/icons';
 import {
 	Box,
 	Button,
@@ -8,9 +8,9 @@ import {
 	Text,
 	useDisclosure,
 } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { API_IMAGE_PORTRAIT_HOST } from '../constant';
-import { ICast, IGenre, IMovieOrigin } from '../interface/movie';
+import { ICast, IMovieOrigin } from '../interface/movie';
 import Card from './Card';
 import TagGenre from './TagGenre';
 import WrapperAvatar from './WrapperAvatar';
@@ -24,6 +24,8 @@ interface Props {
 
 const MovieInfo: FC<Props> = ({ movie, casts }) => {
 	const { onClose, onOpen, isOpen } = useDisclosure();
+	console.log(movie);
+	console.log(casts);
 	return (
 		<>
 			<ModalTrailer

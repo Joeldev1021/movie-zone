@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import CardList from '../components/CardList';
 import MovieInfo from '../components/MovieInfo';
@@ -9,18 +9,31 @@ import Loading from '../components/Loading';
 
 function Movie() {
 	const { id } = useParams();
+	const { pathname } = useLocation();
 	const [page, setPage] = useState(1);
-	const { movieDetails, movieSimilar, loading } = useDetailsMovie(
-		`/movie/${id}`,
+	const [mediaType, setMediaType] = useState<string>('');
+	const { movieDetails, movieSimilar, loading, error } = useDetailsMovie(
+		pathname,
 		page
 	);
+	if (error) {
+		<h1>Error</h1>;
+	}
+
+	useEffect(() => {
+		setMediaType(pathname.includes('tv') ? 'tv' : 'movie');
+	}, []);
+
+	console.log('media', mediaType);
 	return (
 		<Box>
 			{loading === false ? (
 				<Box>
 					<MovieInfo movie={movieDetails.movie} casts={movieDetails.cast} />
 					<Text fontSize='3xl'>Related movies</Text>
-					<CardList movies={movieSimilar!} />
+					{movieSimilar.length > 0 && (
+						<CardList mediaType={mediaType} movies={movieSimilar} />
+					)}
 					<Flex my='4' justifyContent='space-between'>
 						<Button
 							leftIcon={<ImArrowLeft />}

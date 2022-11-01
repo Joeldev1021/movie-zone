@@ -18,6 +18,7 @@ export interface IMovieOrigin {
     id: number
     imdb_id: number
     original_title: string
+    media_type: string;
     original_language: string
     overview: string
     popularity: number
@@ -60,3 +61,19 @@ export interface IMovieResponse {
     total_pages: number
     total_results: number
 }
+
+export interface IPerson {
+    biography: string;
+    birthday: string;
+    id: number
+    imdb_id: string;
+    known_for_department: string;
+    name: string;
+    popularity: number;
+    profile_path: string;
+}
+
+export interface IPersonMovies {
+    cast: IMovieOrigin[]
+    crew: []
+} 

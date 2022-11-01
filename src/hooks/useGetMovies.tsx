@@ -28,7 +28,6 @@ export const useGetMovies = ({ path, params }: Props) => {
 			.catch(() => setError(true))
 			.finally(() => setLoading(false));
 	};
-	console.log('page-', page);
 	const getMoreMovies = async () => {
 		setLoading(true);
 		await API.get<IMovieResponse>(path, { params: { ...params, page: page } })

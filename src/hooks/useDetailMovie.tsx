@@ -11,7 +11,9 @@ export const useDetailsMovie = (path: string, page: number) => {
 	const [movieDetails, setMovieDetails] = useState<IMovieDetails>(
 		{} as IMovieDetails
 	);
-	const [movieSimilar, setMovieSimilar] = useState<IMovieOrigin[]>();
+	const [movieSimilar, setMovieSimilar] = useState<IMovieOrigin[]>(
+		[] as IMovieOrigin[]
+	);
 	const [error, setError] = useState<boolean>();
 	const [loading, setLoading] = useState<boolean>();
 
@@ -38,7 +40,7 @@ export const useDetailsMovie = (path: string, page: number) => {
 			params: { page: page },
 		})
 			.then(res => setMovieSimilar(res.data.results))
-			.catch(err => console.log(err));
+			.catch(err => setError(true));
 	};
 
 	useEffect(() => {
@@ -48,6 +50,6 @@ export const useDetailsMovie = (path: string, page: number) => {
 	useEffect(() => {
 		getDetails();
 	}, [path]);
-	console.log(movieDetails);
+
 	return { movieDetails, movieSimilar, loading, error };
 };

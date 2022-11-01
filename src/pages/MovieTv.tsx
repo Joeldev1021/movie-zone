@@ -14,13 +14,14 @@ function MovieTv() {
 		`/tv/${id}`,
 		page
 	);
+	console.log('similiar', movieSimilar);
 	return (
 		<Box>
 			{loading === false ? (
 				<Box>
 					<MovieInfo movie={movieDetails.movie} casts={movieDetails.cast} />
 					<Text fontSize='3xl'>Related movies</Text>
-					<CardList movies={movieSimilar!} />
+					{movieSimilar.length > 0 && <CardList movies={movieSimilar} />}
 					<Flex my='4' justifyContent='space-between'>
 						<Button
 							leftIcon={<ImArrowLeft />}

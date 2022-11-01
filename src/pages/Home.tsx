@@ -4,10 +4,8 @@ import CardList from '../components/CardList';
 import { useGetMovies } from '../hooks/useGetMovies';
 import useNearScreen from '../hooks/useNearScreen';
 
-//TODO: trending/all/day
 function Home() {
-	const [page, setPage] = useState(1);
-	const { movies, loading } = useGetMovies({
+	const { movies, loading, getMoreMovies } = useGetMovies({
 		path: `trending/all/day`,
 	});
 
@@ -15,9 +13,8 @@ function Home() {
 	const { entries } = useNearScreen({ target: divRef });
 
 	useEffect(() => {
-		if (entries?.isIntersecting) setPage(prev => prev + 1);
+		if (entries?.isIntersecting) getMoreMovies();
 	}, [entries]);
-
 	return (
 		<>
 			<Box minH='100vh'>

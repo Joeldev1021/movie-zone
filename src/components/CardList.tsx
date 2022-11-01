@@ -7,14 +7,17 @@ import { API_IMAGE_PORTRAIT_HOST } from '../constant';
 
 interface Props {
 	movies: IMovieOrigin[];
-	path?: string;
+	mediaType?: string;
 }
 
-const CardList: FC<Props> = ({ movies, path }) => {
+const CardList: FC<Props> = ({ movies, mediaType }) => {
 	return (
 		<SimpleGrid minChildWidth='200px' spacing='50px'>
 			{movies.map(movie => (
-				<Link key={movie.id} to={`${path ? path : 'movie'}/${movie.id}`}>
+				<Link
+					key={movie.id}
+					to={`/${movie.media_type ? movie.media_type : mediaType}/${movie.id}`}
+				>
 					<Card
 						id={movie.id}
 						title={movie.title}

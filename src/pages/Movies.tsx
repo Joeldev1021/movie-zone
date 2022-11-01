@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import CardList from '../components/CardList';
 import Loading from '../components/Loading';
 import { useGetMovies } from '../hooks/useGetMovies';
@@ -8,13 +8,11 @@ import useNearScreen from '../hooks/useNearScreen';
 
 function Movies() {
 	const { pathname } = useLocation();
-	const divRef = useRef<HTMLDivElement | null>(null);
-	const { entries } = useNearScreen({ target: divRef });
-	const { error, getMoreMovies, loading, movies } = useGetMovies({
+	const { getMoreMovies, loading, movies } = useGetMovies({
 		path: pathname,
 	});
-
-	const isMoviePath = pathname.includes('movie') ? '/movie' : '/tv';
+	const divRef = useRef<HTMLDivElement | null>(null);
+	const { entries } = useNearScreen({ target: divRef });
 
 	useEffect(() => {
 		if (entries?.isIntersecting) {
@@ -24,9 +22,7 @@ function Movies() {
 
 	return (
 		<>
-			<Box minH='100vh'>
-				<CardList path={isMoviePath} movies={movies} />
-			</Box>
+			<Box minH='100vh'>{!loading && <CardList movies={movies} />}</Box>
 			{loading && <Loading />}
 			<div ref={divRef}></div>
 		</>

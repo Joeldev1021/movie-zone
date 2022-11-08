@@ -5,8 +5,8 @@ import {
 	Image,
 	Text,
 } from '@chakra-ui/react';
-import { FC, useState, forwardRef, ForwardedRef } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 interface CardProps {
 	id?: number;
 	image?: string;
@@ -17,10 +17,16 @@ interface CardProps {
 
 const Card = ({ desc, image, title, rating }: CardProps) => {
 	return (
-		<Box position='relative' borderRadius='lg' overflow='hidden'>
-			<Image src={image} alt={title} />
-			<CardInfo title={title} desc={desc} rating={rating} />
-		</Box>
+		<motion.div
+			initial={{ y: -30, opacity: 0 }}
+			animate={{ y: 0, opacity: 1 }}
+			transition={{ duration: 0.7 }}
+		>
+			<Box position='relative' borderRadius='lg' overflow='hidden'>
+				<Image src={image} alt={title} />
+				<CardInfo title={title} desc={desc} rating={rating} />
+			</Box>
+		</motion.div>
 	);
 };
 

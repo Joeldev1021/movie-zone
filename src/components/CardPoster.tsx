@@ -3,7 +3,7 @@ import React from 'react';
 
 const CardPoster = ({ image, name }: { image: string; name: string }) => {
 	return (
-		<Box minWidth='300px'>
+		<Box width='300px' minWidth='300px'>
 			<Image src={image} alt={name} borderRadius='2xl' objectFit='cover' />
 		</Box>
 	);

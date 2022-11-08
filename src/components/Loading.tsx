@@ -2,16 +2,23 @@ import { Flex, Spinner } from '@chakra-ui/react';
 
 const Loading = () => {
 	return (
-		<Flex my='20px' justify='center'>
-			<Spinner
-				thickness='9px'
-				width='200px'
-				height='200px'
-				speed='1s'
-				emptyColor='gray.100'
-				color='pink.500'
-				size='xl'
-			/>
+		<Flex justifyContent='center'>
+			<div className='loadingio-spinner-spinner-dviztmrkkv4'>
+				<div className='ldio-evnghld3ff'>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
 		</Flex>
 	);
 };

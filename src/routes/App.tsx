@@ -4,15 +4,15 @@ import { lazy, Suspense } from 'react';
 import Layout from '../layout/Layout';
 import Movies from '../pages/Movies';
 import { MULTI_PATH } from '../constant';
+import Loading from '../components/Loading';
 const SearchPage = lazy(() => import('../pages/SearchPage'));
 const GenrePage = lazy(() => import('../pages/GenrePage'));
 const MoviePage = lazy(() => import('../pages/Movie'));
-const MovieTvPage = lazy(() => import('../pages/MovieTv'));
 const PersonPage = lazy(() => import('../pages/Person'));
 function App() {
 	return (
 		<BrowserRouter>
-			<Suspense>
+			<Suspense fallback={<Loading />}>
 				<Routes>
 					<Route element={<Layout />}>
 						<Route path='/' element={<Home />} />

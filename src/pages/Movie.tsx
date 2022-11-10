@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Text, useMediaQuery } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import CardList from '../components/CardList';
@@ -11,6 +11,8 @@ function Movie() {
 	const { id } = useParams();
 	const { pathname } = useLocation();
 	const [page, setPage] = useState(1);
+	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
+
 	const [mediaType, setMediaType] = useState<string>('');
 	const { movieDetails, movieSimilar, loading, error } = useDetailsMovie(
 		pathname,
@@ -24,11 +26,10 @@ function Movie() {
 		setMediaType(pathname.includes('tv') ? 'tv' : 'movie');
 	}, []);
 
-	console.log('media', mediaType);
 	return (
 		<Box>
 			{loading === false ? (
-				<Box>
+				<>
 					<MovieInfo movie={movieDetails.movie} casts={movieDetails.cast} />
 					<Text fontSize='3xl'>Related movies</Text>
 					{movieSimilar.length > 0 && (
@@ -56,7 +57,7 @@ function Movie() {
 							page {page + 1}
 						</Button>
 					</Flex>
-				</Box>
+				</>
 			) : (
 				<Loading />
 			)}

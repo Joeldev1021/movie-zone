@@ -1,6 +1,7 @@
 import { Box, Heading } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import CardList from '../components/CardList';
+import Loading from '../components/Loading';
 import { useGetMovies } from '../hooks/useGetMovies';
 import useNearScreen from '../hooks/useNearScreen';
 
@@ -20,11 +21,7 @@ function Home() {
 			<Box minH='100vh'>
 				<CardList movies={movies} />
 			</Box>
-			{loading && (
-				<Heading as='h2' bg='red' color='white'>
-					Cargando
-				</Heading>
-			)}
+			{loading && <Loading />}
 			<div ref={divRef}></div>
 		</>
 	);

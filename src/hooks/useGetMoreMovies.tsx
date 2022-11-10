@@ -72,10 +72,6 @@ export const useGetMoreMovies = ({ path, page }: Props) => {
 		return () => controller.abort();
 	}, [page]);
 
-	useEffect(() => {
-		console.log('path', path);
-	}, [path]);
-
 	return { movies, isLoading, isError, hasNextPage };
 };
 

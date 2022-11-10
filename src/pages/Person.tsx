@@ -32,7 +32,7 @@ const Person = () => {
 						/>
 					</Flex>
 					<Text fontSize='3xl'>Related movies</Text>
-					<CardList movies={movies} />
+					<CardList mediaType='movie' movies={movies} />
 					<Flex my='4' justifyContent='space-between'>
 						<Button
 							leftIcon={<ImArrowLeft />}

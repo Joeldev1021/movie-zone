@@ -12,6 +12,7 @@ const GenrePage = () => {
 		path: '/discover/movie',
 		params: { with_genres: id },
 	});
+
 	const divRef = useRef<HTMLDivElement | null>(null);
 	const { entries } = useNearScreen({ target: divRef });
 
@@ -21,8 +22,8 @@ const GenrePage = () => {
 
 	return (
 		<>
-			<Box>
-				<CardList movies={movies} />
+			<Box minH='100vh'>
+				{loading ? <Loading /> : <CardList mediaType='movie' movies={movies} />}
 			</Box>
 			{loading && <Loading />}
 			<div ref={divRef}></div>

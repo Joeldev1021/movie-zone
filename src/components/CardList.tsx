@@ -1,7 +1,7 @@
 import { SimpleGrid } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { IMovieOrigin } from '../interface/movie';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import Card from './Card';
 import { API_IMAGE_PORTRAIT_HOST } from '../constant';
 
@@ -20,7 +20,7 @@ const CardList: FC<Props> = ({ movies, mediaType }) => {
 				>
 					<Card
 						id={movie.id}
-						title={movie.title}
+						title={movie.title || movie.name}
 						image={`${API_IMAGE_PORTRAIT_HOST}/${movie.poster_path}`}
 						rating={movie.vote_average}
 						desc={movie.overview}

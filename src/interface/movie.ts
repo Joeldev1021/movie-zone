@@ -24,7 +24,8 @@ export interface IMovieOrigin {
     popularity: number
     poster_path: string
     release_date: string
-    title: string
+    title: string;
+    name: string;
     videos: {
         results: IMovieVideo[]
     }

@@ -4,6 +4,7 @@ import {
 	Button,
 	Flex,
 	Heading,
+	Image,
 	Stack,
 	Text,
 	useDisclosure,
@@ -11,7 +12,6 @@ import {
 import { FC } from 'react';
 import { API_IMAGE_PORTRAIT_HOST } from '../constant';
 import { ICast, IMovieOrigin } from '../interface/movie';
-import Card from './Card';
 import TagGenre from './TagGenre';
 import WrapperAvatar from './WrapperAvatar';
 import { FaPlay } from 'react-icons/fa';
@@ -24,8 +24,6 @@ interface Props {
 
 const MovieInfo: FC<Props> = ({ movie, casts }) => {
 	const { onClose, onOpen, isOpen } = useDisclosure();
-	console.log(movie);
-	console.log(casts);
 	return (
 		<>
 			<ModalTrailer
@@ -33,23 +31,23 @@ const MovieInfo: FC<Props> = ({ movie, casts }) => {
 				onClose={onClose}
 				isOpen={isOpen}
 			/>
-			<Flex pb='5'>
-				<Box width='800px'>
-					<Card
-						title={movie.title}
-						image={`${API_IMAGE_PORTRAIT_HOST}/${movie.poster_path}`}
-						rating={movie.vote_average}
-						desc={movie.overview}
-					/>
-				</Box>
-				<Box px='4'>
-					<Heading as='h2'>{movie.title}</Heading>
-					<Flex>
+			<Flex bg='red.500' w='100%' py='5'>
+				<Image
+					src={`${API_IMAGE_PORTRAIT_HOST}/${movie.poster_path}`}
+					alt={movie.title}
+					borderRadius='2xl'
+					mr='8'
+				/>
+				<Box>
+					<Heading as='h2' fontSize='20px'>
+						{movie.title}
+					</Heading>
+					<Flex my='3'>
 						{movie.genres?.map(genre => (
 							<TagGenre key={genre.id} name={genre.name} id={genre.id} />
 						))}
 					</Flex>
-					<Text>{movie.overview}</Text>
+					<Text fontSize='14px'>{movie.overview}</Text>
 					<WrapperAvatar casts={casts} />
 					<Stack direction='row' spacing={6}>
 						<Button

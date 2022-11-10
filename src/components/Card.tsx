@@ -22,7 +22,14 @@ const Card = ({ desc, image, title, rating }: CardProps) => {
 			animate={{ y: 0, opacity: 1 }}
 			transition={{ duration: 0.7 }}
 		>
-			<Box position='relative' borderRadius='lg' overflow='hidden'>
+			<Box
+				bg='red'
+				maxWidth='300px'
+				position='relative'
+				borderRadius='lg'
+				overflow='hidden'
+				margin='auto'
+			>
 				<Image src={image} alt={title} />
 				<CardInfo title={title} desc={desc} rating={rating} />
 			</Box>

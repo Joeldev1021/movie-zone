@@ -4,6 +4,8 @@ import { Outlet } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Search from '../components/Search';
 import { motion } from 'framer-motion';
+import LeftSidebar from '../components/LeftSideBar/LeftSideBar';
+import SidebarWithHeader from '../components/LeftSideBar/LeftSideBar';
 
 interface PropsLayout {
 	Outlet: React.ReactNode;
@@ -12,19 +14,8 @@ interface PropsLayout {
 const Layout = () => {
 	return (
 		<Box>
-			<Header />
-			<motion.div
-				initial='initial'
-				animate='animate'
-				variants={{
-					initial: {
-						opacity: 0,
-					},
-					animate: {
-						opacity: 1,
-					},
-				}}
-			>
+			<SidebarWithHeader>
+				<Header />
 				<Container
 					maxW={{ base: '100%', md: '80%', lg: '70%' }}
 					mt={{ base: '1', md: '3' }}
@@ -32,7 +23,7 @@ const Layout = () => {
 					<Search />
 					<Outlet />
 				</Container>
-			</motion.div>
+			</SidebarWithHeader>
 		</Box>
 	);
 };

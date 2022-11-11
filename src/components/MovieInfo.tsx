@@ -8,6 +8,7 @@ import {
 	Stack,
 	Text,
 	useDisclosure,
+	useMediaQuery,
 } from '@chakra-ui/react';
 import { FC } from 'react';
 import { API_IMAGE_PORTRAIT_HOST } from '../constant';
@@ -24,6 +25,7 @@ interface Props {
 
 const MovieInfo: FC<Props> = ({ movie, casts }) => {
 	const { onClose, onOpen, isOpen } = useDisclosure();
+	const [isLargerThan800] = useMediaQuery('(min-width: 900px)');
 	return (
 		<>
 			<ModalTrailer
@@ -31,12 +33,12 @@ const MovieInfo: FC<Props> = ({ movie, casts }) => {
 				onClose={onClose}
 				isOpen={isOpen}
 			/>
-			<Flex bg='red.500' w='100%' py='5'>
+			<Flex flexDir={isLargerThan800 ? 'row' : 'column'} w='100%' py='5'>
 				<Image
 					src={`${API_IMAGE_PORTRAIT_HOST}/${movie.poster_path}`}
 					alt={movie.title}
 					borderRadius='2xl'
-					mr='8'
+					mr={isLargerThan800 ? '8' : '0'}
 				/>
 				<Box>
 					<Heading as='h2' fontSize='20px'>

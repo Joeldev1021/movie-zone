@@ -26,7 +26,6 @@ const WrapperAvatar: FC<Props> = ({ casts }) => {
 				display='flex'
 				height='60px'
 				w={isLargerThan1200 ? 500 : 400}
-				bg='blue'
 				overflow='scroll'
 			>
 				{casts.map(cast => (

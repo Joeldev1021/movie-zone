@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Text } from '@chakra-ui/react';
 import { ImArrowLeft, ImArrowRight } from 'react-icons/im';
 import { useParams } from 'react-router-dom';
 import CardList from '../components/CardList';
@@ -20,9 +20,9 @@ const Person = () => {
 			{!loading ? (
 				<Box>
 					<Flex justify='space-between' mb='10'>
-						<CardPoster
-							image={`${API_IMAGE_PORTRAIT_HOST}/${person.profile_path}`}
-							name={person.name}
+						<Image
+							src={`${API_IMAGE_PORTRAIT_HOST}/${person.profile_path}`}
+							alt={person.name}
 							key={person.id}
 						/>
 						<PersonInfo

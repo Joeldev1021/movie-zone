@@ -1,5 +1,5 @@
 import { Box, Container } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Search from '../components/Search';
@@ -15,12 +15,13 @@ const Layout = () => {
 	return (
 		<Box>
 			<SidebarWithHeader>
-				<Header />
+				{/* <Header /> */}
 				<Container
-					maxW={{ base: '100%', md: '80%', lg: '70%' }}
+					pt='20'
+					maxW={{ base: '100%', md: '90%', lg: '80%' }}
 					mt={{ base: '1', md: '3' }}
 				>
-					<Search />
+					{/* <Search /> */}
 					<Outlet />
 				</Container>
 			</SidebarWithHeader>

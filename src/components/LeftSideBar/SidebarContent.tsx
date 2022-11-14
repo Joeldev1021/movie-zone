@@ -3,32 +3,29 @@ import {
 	BoxProps,
 	CloseButton,
 	Flex,
-	FlexProps,
-	Icon,
-	Link,
 	Text,
 	useColorModeValue,
 } from '@chakra-ui/react';
-import { ReactText } from 'react';
 import { IconType } from 'react-icons';
 import {
-	FiCompass,
-	FiHome,
-	FiSettings,
-	FiStar,
-	FiTrendingUp,
-} from 'react-icons/fi';
+	IconHome,
+	IconCompass,
+	IconStar,
+	IconTrending,
+	IconSettings,
+} from '../icons/index';
+import NavItem from './NavItem';
 
 interface LinkItemProps {
 	name: string;
 	icon: IconType;
 }
 const LinkItems: Array<LinkItemProps> = [
-	{ name: 'Home', icon: FiHome },
-	{ name: 'Trending', icon: FiTrendingUp },
-	{ name: 'Explore', icon: FiCompass },
-	{ name: 'Favourites', icon: FiStar },
-	{ name: 'Settings', icon: FiSettings },
+	{ name: 'Home', icon: IconHome },
+	{ name: 'Trending', icon: IconTrending },
+	{ name: 'Explore', icon: IconCompass },
+	{ name: 'Favorites', icon: IconStar },
+	{ name: 'Settings', icon: IconSettings },
 ];
 
 interface SidebarProps extends BoxProps {
@@ -63,43 +60,3 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 };
 
 export default SidebarContent;
-
-interface NavItemProps extends FlexProps {
-	icon: IconType;
-	children: ReactText;
-}
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
-	return (
-		<Link
-			href='#'
-			style={{ textDecoration: 'none' }}
-			_focus={{ boxShadow: 'none' }}
-		>
-			<Flex
-				align='center'
-				p='4'
-				mx='4'
-				borderRadius='lg'
-				role='group'
-				cursor='pointer'
-				_hover={{
-					bg: 'cyan.400',
-					color: 'white',
-				}}
-				{...rest}
-			>
-				{icon && (
-					<Icon
-						mr='4'
-						fontSize='16'
-						_groupHover={{
-							color: 'white',
-						}}
-						as={icon}
-					/>
-				)}
-				{children}
-			</Flex>
-		</Link>
-	);
-};

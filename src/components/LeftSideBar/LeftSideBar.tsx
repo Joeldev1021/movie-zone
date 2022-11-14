@@ -17,8 +17,9 @@ import {
 	MenuDivider,
 	MenuItem,
 	MenuList,
+	Container,
 } from '@chakra-ui/react';
-import { FiMenu, FiBell, FiChevronDown } from 'react-icons/fi';
+import { IconMenu, IconBell, IconChevronDown } from '../icons/index';
 import SidebarContent from './SidebarContent';
 
 export default function SidebarWithHeader({
@@ -47,7 +48,16 @@ export default function SidebarWithHeader({
 				</DrawerContent>
 			</Drawer>
 			{/* mobilenav */}
-			<MobileNav onOpen={onOpen} />
+
+			<Container
+				pos='fixed'
+				left='0'
+				right='0'
+				zIndex='100'
+				maxW={{ base: '100%', md: '90%', lg: '85%' }}
+			>
+				<MobileNav onOpen={onOpen} />
+			</Container>
 			<Box bg='black' ml={{ base: 0, md: 60 }} p='4'>
 				{children}
 			</Box>
@@ -58,28 +68,53 @@ export default function SidebarWithHeader({
 interface MobileProps extends FlexProps {
 	onOpen: () => void;
 }
+
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+	const linkColor = useColorModeValue('gray.600', 'gray.200');
+	const navItem = ['Movies', 'TV Shows', 'Animes'];
+
+	const hoverText = {
+		transition: '.3s linear',
+		color: 'pink.400',
+		textUnderlineOffset: 'underline',
+	};
 	return (
 		//header
 		<Flex
 			ml={{ base: 0, md: 60 }}
-			px={{ base: 4, md: 4 }}
 			height='20'
 			alignItems='center'
-			bg={useColorModeValue('white', 'gray.900')}
+			//	bg='blue.500'
+			bg={useColorModeValue('white', 'black')}
 			borderBottomWidth='1px'
 			borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-			justifyContent={{ base: 'space-between', md: 'flex-end' }}
+			justifyContent={{ base: 'space-between' }}
+			//justifyContent={'center'}
 			{...rest}
 		>
+			<Flex justifyContent='space-between' width={{ base: '2xs' }}>
+				{navItem.map(item => (
+					<Box key={item}>
+						<Text
+							fontSize='lg'
+							fontWeight='medium'
+							cursor='pointer'
+							color={linkColor}
+							_hover={hoverText}
+						>
+							{item}
+						</Text>
+					</Box>
+				))}
+			</Flex>
+			{/* ================= display mobile ============== */}
 			<IconButton
 				display={{ base: 'flex', md: 'none' }}
 				onClick={onOpen}
 				variant='outline'
 				aria-label='open menu'
-				icon={<FiMenu />}
+				icon={<IconMenu />}
 			/>
-
 			<Text
 				display={{ base: 'flex', md: 'none' }}
 				fontSize='2xl'
@@ -88,13 +123,14 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 			>
 				Logo
 			</Text>
+			{/* ================= display mobile ============== */}
 
-			<HStack bg='red.600' spacing={{ base: '0', md: '6' }}>
+			<HStack spacing={{ base: '0', md: '6' }}>
 				<IconButton
 					size='lg'
 					variant='ghost'
 					aria-label='open menu'
-					icon={<FiBell />}
+					icon={<IconBell />}
 				/>
 				<Flex alignItems={'center'}>
 					<Menu>
@@ -122,7 +158,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 									</Text>
 								</VStack>
 								<Box display={{ base: 'none', md: 'flex' }}>
-									<FiChevronDown />
+									<IconChevronDown />
 								</Box>
 							</HStack>
 						</MenuButton>
